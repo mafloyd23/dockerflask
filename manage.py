@@ -15,7 +15,7 @@ def recreate_db():
     db.drop_all()
     db.create_all()
     db.session.commit()
-    
+
 
 @cli.command()
 def test():
@@ -25,6 +25,13 @@ def test():
     if result.wasSuccessful():
         return 0
     return 1
+
+@cli.command()
+def seed_db():
+    """Seeds the database."""
+    db.session.add(User(username='mafloyd', email='mafloyd23@gmail.com'))
+    db.session.add(User(username='lgfloyd', email='bjmomtn@gmail.com'))
+    db.session.commit()
 
 
 if __name__ == '__main__':
